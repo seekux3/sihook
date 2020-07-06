@@ -113,10 +113,10 @@ void SiTabCtl_Create(HWND parent)
 	hwnd_tab_ctl = CreateWindowEx(0,WC_TABCONTROL,"",
 								WS_CHILD|WS_VISIBLE|TCS_BUTTONS|TCS_FLATBUTTONS|TCS_BOTTOM|TCS_MULTILINE|TCS_RAGGEDRIGHT|TCS_SCROLLOPPOSITE|TCS_FOCUSNEVER|TCS_OWNERDRAWFIXED,
 								0,0,0,SI_TAB_HEIGHT,parent,NULL,NULL,NULL);
-								
+
 	HFONT font = CreateFont(16,0,0,0,FW_NORMAL,FALSE,FALSE,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH | FF_SWISS,"Courier New");
 	SendMessage(hwnd_tab_ctl,WM_SETFONT,(WPARAM)font,MAKELPARAM(1,0));
-							
+
 	SiTabCtl_AddCloseItem();
 	last_row_count = 1;
 	old_tab_ctl_proc = (WNDPROC)GetWindowLong(hwnd_tab_ctl,GWL_WNDPROC);
@@ -224,7 +224,7 @@ void SiTabCtl_CloseItem(int idx)
 	TabCtrl_GetItem(hwnd_tab_ctl,idx,&tci);
 	hwnd = (HWND)tci.lParam;
 
-	SendMessage(hwnd,WM_SYSCOMMAND,SC_CLOSE,0);	
+	SendMessage(hwnd,WM_SYSCOMMAND,SC_CLOSE,0);
 }
 
 //设置Item文字
@@ -334,14 +334,14 @@ static void SiTabCtl_PopupMenu(int index, POINT* point, int type)
 	HMENU hMenu = CreatePopupMenu();
 	if(type == 0)
 	{
-		AppendMenu(hMenu, MF_STRING, PM_CLOSE_CURRENT, "关闭标签");
-		AppendMenu(hMenu, MF_STRING, PM_CLOSE_OTHER, "关闭其他");
-		AppendMenu(hMenu, MF_STRING, PM_CLOSE_RIGHT, "关闭右侧");
-		AppendMenu(hMenu, MF_STRING, PM_CLOSE_LEFT, "关闭左侧");
+		AppendMenu(hMenu, MF_STRING, PM_CLOSE_CURRENT, "Close tab");
+		AppendMenu(hMenu, MF_STRING, PM_CLOSE_OTHER, "Close other");
+		AppendMenu(hMenu, MF_STRING, PM_CLOSE_RIGHT, "Close right");
+		AppendMenu(hMenu, MF_STRING, PM_CLOSE_LEFT, "Close left");
 	}
 	else
 	{
-		AppendMenu(hMenu, MF_STRING, PM_ABOUT, "关于sitab");
+		AppendMenu(hMenu, MF_STRING, PM_ABOUT, "About sitab");
 	}
 	TrackPopupMenu(hMenu, TPM_LEFTALIGN, point->x, point->y, 0, hwnd_tab_ctl, NULL);
 }
@@ -382,7 +382,7 @@ void SiTabCtl_OnLButtonClk(void)
 	if(count == 0)
 		return;
 
-	rtv = MessageBox(hwnd_tab_ctl,"是否关闭所有标签?","sitab plugin by RedXu",MB_OKCANCEL|MB_ICONQUESTION|MB_DEFBUTTON2);
+	rtv = MessageBox(hwnd_tab_ctl,"Close all tabs?","sitab plugin by RedXu",MB_OKCANCEL|MB_ICONQUESTION|MB_DEFBUTTON2);
 	if(rtv == IDCANCEL)
 	{
 		TabCtrl_SetCurSel(hwnd_tab_ctl, last_active_item);
