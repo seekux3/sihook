@@ -1,0 +1,7 @@
+# : comments
+
+Bin/
+msimg32/Release/
+msimg32/msimg32.depend
+obj/
+sihook.depend
