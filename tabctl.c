@@ -114,7 +114,7 @@ void SiTabCtl_Create(HWND parent)
 								WS_CHILD|WS_VISIBLE|TCS_BUTTONS|TCS_FLATBUTTONS|TCS_BOTTOM|TCS_MULTILINE|TCS_RAGGEDRIGHT|TCS_SCROLLOPPOSITE|TCS_FOCUSNEVER|TCS_OWNERDRAWFIXED,
 								0,0,0,SI_TAB_HEIGHT,parent,NULL,NULL,NULL);
 
-	HFONT font = CreateFont(16,0,0,0,FW_NORMAL,FALSE,FALSE,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH | FF_SWISS,"Courier New");
+	HFONT font = CreateFont(16,0,0,0,FW_NORMAL,FALSE,FALSE,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH | FF_SWISS,"Microsoft Sans Serif");
 	SendMessage(hwnd_tab_ctl,WM_SETFONT,(WPARAM)font,MAKELPARAM(1,0));
 
 	SiTabCtl_AddCloseItem();
@@ -422,7 +422,7 @@ void SiTabCtl_OnDrawItem(DRAWITEMSTRUCT* item)
 	hBrush = CreateSolidBrush(color_table[type]);
 	if(SiTabCtl_GetCurItem() == item->itemID)
 	{
-		hBrush = CreateSolidBrush(RGB(255,0,0));
+		hBrush = CreateSolidBrush(RGB(208,255,0));
 	}
     //SetTextColor(lpDrawItem->hDC, RGB(0, 0, 255));
     //FrameRect(item->hDC,&item->rcItem,hBrush);
